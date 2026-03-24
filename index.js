@@ -4,16 +4,19 @@ const app = express();
 
 app.use(express.json());
 
+// MCP endpoint
 app.post("/mcp", async (req, res) => {
   return res.json({
     tools: []
   });
 });
 
-app.get("/.well-known/openai-apim-verification", (req, res) => {
-  res.send("GEJVaKnb_bZx5J4CJWgVqAGJNyjFxuR_A-e6oqZE8GQ");
+// ✅ 도메인 검증 (이게 핵심)
+app.get("/.well-known/openai-apps-challenge", (req, res) => {
+  res.send("zg3vSF2imCsqjIj1E3Hd1UnIN3uVUylOv6OL2UPoyUA");
 });
 
+// 기본 확인용
 app.get("/", (req, res) => {
   res.send("ok");
 });
